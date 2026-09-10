@@ -1,9 +1,24 @@
-﻿# Nested project repos are self-contained; ignore their install artifacts if tracked from the parent.
+﻿# Dependencies & build
 **/node_modules/
+**/dist/
+**/.vite/
+*.tgz
+coverage/
+
+# Runtime data
 **/.sentinel/
 **/.acr/
 **/*.db
 **/*.db-journal
-**/dist/
-**/.vite/
+
+# Logs & env
+*.log
+dash-*.log
 .DS_Store
+.env
+.env.*
+
+# Editors
+.idea/
+.vscode/*
+!.vscode/extensions.json

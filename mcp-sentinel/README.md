@@ -1,5 +1,8 @@
 # mcp-sentinel
 
+[![CI](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](../LICENSE)
+
 Transparent **MCP proxy** with YAML policy, hash-chained audit logging, and a local dashboard.
 
 Point Cursor / Claude Code / any MCP host at sentinel instead of each server. Every tool call is policy-checked, redacted, logged, and browsable.
@@ -10,6 +13,8 @@ Host ──stdio──► mcp-sentinel ──stdio──► your MCP servers
                       ▼
                  SQLite audit + dashboard
 ```
+
+Part of [cursor-ai-agent-tooling-projects](https://github.com/dqmjr/cursor-ai-agent-tooling-projects).
 
 ## Install
 
@@ -22,12 +27,12 @@ npm test
 ## Quick start
 
 ```bash
-# Browse an example audit DB
-npx tsx scripts/smoke-seed.mts
+# Seed + browse an example audit DB
+npm run smoke
 npx tsx src/cli.ts dashboard -c examples/smoke-config.json
-# open http://127.0.0.1:3921
+# → http://127.0.0.1:3921
 
-# Or run as the MCP proxy (stdio) for your host
+# Run as the MCP proxy (stdio) for your host
 npx tsx src/cli.ts proxy -c examples/sentinel.json
 ```
 
@@ -77,10 +82,6 @@ rules:
 
 Paths in the config are resolved **relative to the config file**. Child server `cwd` defaults to that directory.
 
-## Origin
-
-Created September 2026. Authorship via git history, Apache-2.0 `LICENSE`, and `NOTICE`.
-
 ## License
 
-Apache-2.0
+Apache-2.0 — see [LICENSE](./LICENSE) and [NOTICE](./NOTICE).

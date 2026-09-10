@@ -1,0 +1,30 @@
+name: Feature request
+description: Propose an improvement
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: project
+    attributes:
+      label: Project
+      options:
+        - mcp-sentinel
+        - agent-control-room
+        - verify-mcp
+        - repository / docs
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What gap does this fill?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: How should it work?
+    validations:
+      required: true

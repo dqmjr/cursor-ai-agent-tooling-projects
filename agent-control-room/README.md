@@ -1,5 +1,8 @@
 # Agent Control Room
 
+[![CI](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](../LICENSE)
+
 Local **control plane for parallel coding agents** — live kanban, event timeline, approve/reject, diff preview, and git rollback.
 
 ```text
@@ -11,6 +14,8 @@ Claude Code / Cursor / any CLI
         ▼
    Dashboard  http://127.0.0.1:3930
 ```
+
+Part of [cursor-ai-agent-tooling-projects](https://github.com/dqmjr/cursor-ai-agent-tooling-projects).
 
 ## Install
 
@@ -47,10 +52,7 @@ Open **http://127.0.0.1:3930**.
 | `@acr/adapter-generic` | stdin / JSON / JSONL ingest |
 
 ```bash
-# Generic
 node packages/adapters/generic/dist/cli.js --file examples/sample-event.json
-
-# Cursor JSONL tail
 node packages/adapters/cursor/dist/hook.js tail --file .cursor/agent-events.jsonl
 ```
 
@@ -69,10 +71,6 @@ node packages/adapters/cursor/dist/hook.js tail --file .cursor/agent-events.json
 
 `POST /api/events` · `POST /api/approve` · `POST /api/sessions/:id/rollback`
 
-## Origin
-
-Created September 2026. Authorship via git history, Apache-2.0 `LICENSE`, and `NOTICE`.
-
 ## License
 
-Apache-2.0
+Apache-2.0 — see [LICENSE](./LICENSE) and [NOTICE](./NOTICE).

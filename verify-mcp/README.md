@@ -1,6 +1,11 @@
 # verify-mcp
 
+[![CI](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](../LICENSE)
+
 **Verification-as-a-tool** for AI agents. Exposes MCP `verify` so a model can check an artifact before saying “done” — especially when there is no compiler or test suite.
+
+Part of [cursor-ai-agent-tooling-projects](https://github.com/dqmjr/cursor-ai-agent-tooling-projects).
 
 ## Packs
 
@@ -46,10 +51,6 @@ Ask the agent: *Call `verify` on `docs/guide.md` with pack `markdown-links` befo
 - `list_packs`
 - `verify` — `{ path, packs?, content?, options?, cwd? }` → `{ pass, results, summary }`
 
-## Origin
-
-Created September 2026. Authorship via git history, Apache-2.0 `LICENSE`, and `NOTICE`.
-
 ## License
 
-Apache-2.0
+Apache-2.0 — see [LICENSE](./LICENSE) and [NOTICE](./NOTICE).

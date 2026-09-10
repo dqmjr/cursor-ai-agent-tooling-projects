@@ -1,0 +1,38 @@
+{
+  "name": "cursor-ai-agent-tooling-projects",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first TypeScript tooling for AI coding agents: MCP governance, multi-agent control, and verification-as-a-tool.",
+  "author": "dqmjr",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git"
+  },
+  "homepage": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects",
+  "bugs": {
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "setup": "npm install --prefix mcp-sentinel && npm install --prefix agent-control-room && npm install --prefix verify-mcp",
+    "build": "npm run build --prefix mcp-sentinel && npm run build --prefix agent-control-room && npm run build --prefix verify-mcp",
+    "test": "npm test --prefix mcp-sentinel && npm test --prefix agent-control-room && npm test --prefix verify-mcp",
+    "lint": "npm run lint --prefix mcp-sentinel && npm run lint --prefix agent-control-room && npm run lint --prefix verify-mcp",
+    "demo:sentinel": "npm run smoke --prefix mcp-sentinel && npm --prefix mcp-sentinel exec -- tsx src/cli.ts dashboard -c examples/smoke-config.json",
+    "demo:acr": "node agent-control-room/packages/core/dist/cli.js daemon --port 3930 --db agent-control-room/.acr/demo.db --static agent-control-room/packages/web/dist",
+    "demo:verify": "node verify-mcp/dist/cli.js run --path README.md -p markdown-links"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agents",
+    "observability",
+    "cursor",
+    "claude",
+    "devtools",
+    "typescript"
+  ]
+}

@@ -1,37 +1,96 @@
-# AI Agent Tooling
+# Cursor AI Agent Tooling
 
-Three focused open-source tools for the AI coding-agent stack: **MCP governance**, a **multi-agent control plane**, and **verification-as-a-tool**.
+[![CI](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](./package.json)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg)](https://www.typescriptlang.org/)
 
-| Project | One-liner |
-|---------|-----------|
-| **[mcp-sentinel](./mcp-sentinel)** | Transparent MCP proxy with policy rules + tamper-evident audit log + local dashboard |
-| **[agent-control-room](./agent-control-room)** | Kanban + approvals + git rollback for parallel coding agents |
-| **[verify-mcp](./verify-mcp)** | MCP `verify` tool with markdown / JSON Schema / secrets packs |
+Local-first **TypeScript** tools for the AI coding-agent stack: MCP governance, a multi-agent control plane, and verification-as-a-tool.
 
-All TypeScript · Node 18+ · Apache-2.0 · local-first · no telemetry
+No cloud lock-in. No telemetry by default. CLI-first, dashboards optional.
+
+---
+
+## Projects
+
+| Package | Role | Status |
+|---------|------|--------|
+| [`mcp-sentinel`](./mcp-sentinel) | Transparent MCP proxy · YAML policy · hash-chained audit · local dashboard | `0.1.0` |
+| [`agent-control-room`](./agent-control-room) | Parallel-agent kanban · approvals · diff preview · git rollback | `0.1.0` |
+| [`verify-mcp`](./verify-mcp) | MCP `verify` tool · markdown / JSON Schema / secrets packs | `0.1.0` |
+
+```text
+┌─────────────────┐     ┌──────────────────────┐     ┌─────────────┐
+│  MCP Hosts      │     │  Coding Agents       │     │  Artifacts  │
+│  Cursor/Claude  │     │  Claude/Cursor/…     │     │  docs/json  │
+└────────┬────────┘     └──────────┬───────────┘     └──────┬──────┘
+         │                         │                        │
+         ▼                         ▼                        ▼
+   mcp-sentinel            agent-control-room          verify-mcp
+   policy + audit          timeline + approve          pass / fail
+```
+
+More detail: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
+
+---
+
+## Requirements
+
+- Node.js **18+** (20+ recommended)
+- npm 10+
 
 ## Quick start
 
 ```bash
-# 1) MCP gateway
-cd mcp-sentinel && npm install && npm test && npm run build
-npx tsx src/cli.ts dashboard -c examples/smoke-config.json
-# → http://127.0.0.1:3921
-
-# 2) Agent control plane
-cd ../agent-control-room && npm install && npm test && npm run build
-node packages/core/dist/cli.js daemon --port 3930 --static packages/web/dist
-# → http://127.0.0.1:3930
-
-# 3) Verification MCP
-cd ../verify-mcp && npm install && npm test && npm run build
-node dist/cli.js run --path README.md -p markdown-links
+git clone https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git
+cd cursor-ai-agent-tooling-projects
+npm run setup    # install all packages
+npm test         # run every test suite
+npm run build    # build all packages
 ```
 
-## Why these three
+### Try each tool
 
-The agent ecosystem grew fast; the missing layers are **observability/policy for MCP**, **human control over parallel agents**, and **verification when there is no compiler**. Each project is small, demo-driven, and usable from the CLI without a GUI.
+```bash
+# MCP gateway dashboard
+npm run demo:sentinel
+# → http://127.0.0.1:3921
+
+# Multi-agent control room
+npm run demo:acr
+# → http://127.0.0.1:3930
+
+# Verification CLI
+npm run demo:verify
+```
+
+---
+
+## Repository layout
+
+```text
+.
+├── mcp-sentinel/           MCP observability & policy gateway
+├── agent-control-room/     Multi-agent session dashboard (npm workspaces)
+├── verify-mcp/             Verification-as-a-tool MCP server
+├── docs/                   Architecture notes
+├── .github/                CI, issue & PR templates
+├── LICENSE                 Apache-2.0
+└── package.json            Root scripts (setup / test / build / demo)
+```
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md). Security reports: [SECURITY.md](./SECURITY.md).
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-Apache License 2.0. See each project’s `LICENSE` and `NOTICE`.
+Apache License 2.0 — [LICENSE](./LICENSE) · [NOTICE](./NOTICE)
+
+© 2026 [dqmjr](https://github.com/dqmjr)
