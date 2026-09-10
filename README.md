@@ -49,19 +49,23 @@ npm test         # run every test suite
 npm run build    # build all packages
 ```
 
+### Flagship demo — mcp-sentinel
+
+```bash
+cd mcp-sentinel
+npm run demo
+npm run demo:dashboard
+# → http://127.0.0.1:3921
+```
+
+Ready-to-post draft: [docs/SHOW_HN.md](./docs/SHOW_HN.md)
+
 ### Try each tool
 
 ```bash
-# MCP gateway dashboard
-npm run demo:sentinel
-# → http://127.0.0.1:3921
-
-# Multi-agent control room
-npm run demo:acr
-# → http://127.0.0.1:3930
-
-# Verification CLI
-npm run demo:verify
+npm run demo:sentinel   # from repo root (smoke + dashboard)
+npm run demo:acr        # agent control room UI
+npm run demo:verify     # verification CLI
 ```
 
 ---

@@ -3,69 +3,56 @@
 [![CI](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](../LICENSE)
 
-Transparent **MCP proxy** with YAML policy, hash-chained audit logging, and a local dashboard.
+**MCP tool calls are invisible.** mcp-sentinel sits between your host and existing MCP servers, applies policy, redacts secrets, and writes a tamper-evident audit trail you can browse locally.
 
-Point Cursor / Claude Code / any MCP host at sentinel instead of each server. Every tool call is policy-checked, redacted, logged, and browsable.
+![Architecture](./docs/architecture.svg)
 
 ```text
-Host ──stdio──► mcp-sentinel ──stdio──► your MCP servers
+Before:  Host ──────────────────────────────► MCP servers   (no logs, no policy)
+After:   Host ──► mcp-sentinel ──► MCP servers
                       │
-                      ▼
-                 SQLite audit + dashboard
+                      ├── YAML allow / deny / confirm
+                      ├── secret redaction
+                      └── hash-chained SQLite + live dashboard
 ```
 
 Part of [cursor-ai-agent-tooling-projects](https://github.com/dqmjr/cursor-ai-agent-tooling-projects).
 
-## Install
+## 60-second demo
 
 ```bash
-npm install
-npm run build
-npm test
-```
-
-## Quick start
-
-```bash
-# Seed + browse an example audit DB
-npm run smoke
-npx tsx src/cli.ts dashboard -c examples/smoke-config.json
+npm install && npm run build
+npm run demo                 # seed a realistic audit timeline
+npm run demo:dashboard       # open the live UI
 # → http://127.0.0.1:3921
-
-# Run as the MCP proxy (stdio) for your host
-npx tsx src/cli.ts proxy -c examples/sentinel.json
 ```
 
-### Wire into Cursor / Claude
+You'll see allow / confirm / deny events, redacted secrets, and a verified hash chain.
 
-```json
-{
-  "mcpServers": {
-    "sentinel": {
-      "command": "npx",
-      "args": [
-        "tsx",
-        "/ABS/PATH/mcp-sentinel/src/cli.ts",
-        "proxy",
-        "--config",
-        "/ABS/PATH/mcp-sentinel/examples/sentinel.json"
-      ]
-    }
-  }
-}
-```
+## Install into Cursor
 
-Downstream servers live in `sentinel.json` (same shape as `mcp.json`). Tools appear as `serverName__toolName`.
+1. Copy [`examples/cursor.mcp.json`](./examples/cursor.mcp.json)
+2. Replace `REPLACE_WITH_ABS_PATH` with your absolute path to this folder
+3. Merge into Cursor MCP settings (or `.cursor/mcp.json`)
+
+Same shape works for Claude Desktop — see [`examples/claude_desktop.mcp.json`](./examples/claude_desktop.mcp.json).
+
+Downstream servers stay in [`examples/sentinel.json`](./examples/sentinel.json). Tools appear as `serverName__toolName`.
 
 ## CLI
 
 | Command | What it does |
 |---------|----------------|
-| `proxy -c <config>` | Stdio MCP gateway |
-| `dashboard -c <config> [-p port]` | Local UI + `/api/*` |
+| `proxy -c <config>` | Stdio MCP gateway (what the host launches) |
+| `dashboard -c <config>` | Local UI + REST + **live SSE** stream |
 | `verify -c <config>` | Check hash chain (exit 1 if broken) |
-| `stats -c <config>` | Counters |
-| `events -c <config>` | Recent rows as JSON |
+| `stats` / `events` | Headless inspection |
+
+```bash
+npx tsx src/cli.ts proxy -c examples/sentinel.json
+npx tsx src/cli.ts dashboard -c examples/smoke-config.json
+npx tsx src/cli.ts verify -c examples/smoke-config.json
+```
 
 ## Policy (YAML)
 
@@ -80,8 +67,14 @@ rules:
     action: confirm
 ```
 
-Paths in the config are resolved **relative to the config file**. Child server `cwd` defaults to that directory.
+Paths resolve **relative to the config file**. Child server `cwd` defaults to that directory.
+
+## Why it exists
+
+The MCP ecosystem has thousands of servers and almost no governance layer. When an agent touches production-ish tools, teams need forensics and policy — locally, without shipping prompts to a SaaS.
 
 ## License
 
-Apache-2.0 — see [LICENSE](./LICENSE) and [NOTICE](./NOTICE).
+Apache-2.0 — [LICENSE](./LICENSE) · [NOTICE](./NOTICE)
+
+Promo draft: [docs/SHOW_HN.md](../docs/SHOW_HN.md)

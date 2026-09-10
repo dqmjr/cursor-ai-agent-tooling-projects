@@ -66,6 +66,7 @@ export function App() {
   const [selected, setSelected] = useState<AuditEvent | null>(null);
   const [verify, setVerify] = useState<VerifyResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [live, setLive] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
@@ -91,8 +92,34 @@ export function App() {
 
   useEffect(() => {
     void refresh();
-    const id = setInterval(() => void refresh(), 4000);
-    return () => clearInterval(id);
+  }, [refresh]);
+
+  // Live updates via Server-Sent Events (falls back to polling if SSE fails).
+  useEffect(() => {
+    const es = new EventSource("/api/stream");
+    let pollId: ReturnType<typeof setInterval> | undefined;
+
+    es.onopen = () => setLive(true);
+    es.onmessage = (msg) => {
+      try {
+        const data = JSON.parse(msg.data) as { type: string };
+        if (data.type === "change" || data.type === "hello") {
+          void refresh();
+        }
+      } catch {
+        // ignore malformed frames
+      }
+    };
+    es.onerror = () => {
+      setLive(false);
+      es.close();
+      pollId = setInterval(() => void refresh(), 3000);
+    };
+
+    return () => {
+      es.close();
+      if (pollId) clearInterval(pollId);
+    };
   }, [refresh]);
 
   return (
@@ -103,6 +130,9 @@ export function App() {
           <p>MCP observability &amp; policy gateway — local audit timeline</p>
         </div>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          <span className={live ? "verify-ok" : "verify-bad"}>
+            {live ? "● live" : "○ polling"}
+          </span>
           {verify && (
             <span className={verify.ok ? "verify-ok" : "verify-bad"}>
               chain {verify.ok ? `ok (${verify.checked})` : `BROKEN @ ${verify.brokenAtId}`}
@@ -197,7 +227,11 @@ export function App() {
                   </div>
                   <div>
                     <span className={`badge ${e.policyAction}`}>{e.policyAction}</span>
-                    {e.isError ? <span className="badge error" style={{ marginLeft: 6 }}>err</span> : null}
+                    {e.isError ? (
+                      <span className="badge error" style={{ marginLeft: 6 }}>
+                        err
+                      </span>
+                    ) : null}
                   </div>
                 </div>
               ))

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="280" viewBox="0 0 920 280" role="img" aria-label="mcp-sentinel architecture">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1020"/>
+      <stop offset="100%" stop-color="#121a2f"/>
+    </linearGradient>
+  </defs>
+  <rect width="920" height="280" rx="16" fill="url(#bg)"/>
+  <text x="32" y="42" fill="#93a0c0" font-family="ui-sans-serif, system-ui" font-size="14">mcp-sentinel</text>
+  <text x="32" y="68" fill="#e8eefc" font-family="ui-sans-serif, system-ui" font-size="22" font-weight="700">Policy + audit between host and MCP servers</text>
+
+  <rect x="40" y="110" width="180" height="88" rx="12" fill="#182239" stroke="#2a3655"/>
+  <text x="130" y="148" text-anchor="middle" fill="#e8eefc" font-family="ui-sans-serif, system-ui" font-size="15" font-weight="600">MCP Host</text>
+  <text x="130" y="172" text-anchor="middle" fill="#93a0c0" font-family="ui-sans-serif, system-ui" font-size="12">Cursor / Claude</text>
+
+  <path d="M230 154 H300" stroke="#6ea8fe" stroke-width="2" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#6ea8fe"/>
+    </marker>
+  </defs>
+
+  <rect x="310" y="100" width="220" height="108" rx="12" fill="#1b2744" stroke="#4a78ff"/>
+  <text x="420" y="140" text-anchor="middle" fill="#e8eefc" font-family="ui-sans-serif, system-ui" font-size="15" font-weight="700">mcp-sentinel</text>
+  <text x="420" y="164" text-anchor="middle" fill="#93a0c0" font-family="ui-sans-serif, system-ui" font-size="12">allow / deny / redact</text>
+  <text x="420" y="184" text-anchor="middle" fill="#93a0c0" font-family="ui-sans-serif, system-ui" font-size="12">hash-chained audit</text>
+
+  <path d="M530 154 H600" stroke="#6ea8fe" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="610" y="110" width="270" height="88" rx="12" fill="#182239" stroke="#2a3655"/>
+  <text x="745" y="148" text-anchor="middle" fill="#e8eefc" font-family="ui-sans-serif, system-ui" font-size="15" font-weight="600">Downstream MCP</text>
+  <text x="745" y="172" text-anchor="middle" fill="#93a0c0" font-family="ui-sans-serif, system-ui" font-size="12">filesystem · shell · custom</text>
+
+  <path d="M420 208 V236" stroke="#3dd68c" stroke-width="2"/>
+  <rect x="330" y="236" width="180" height="28" rx="8" fill="#163528" stroke="#3dd68c"/>
+  <text x="420" y="255" text-anchor="middle" fill="#3dd68c" font-family="ui-monospace, monospace" font-size="12">SQLite + dashboard</text>
+</svg>

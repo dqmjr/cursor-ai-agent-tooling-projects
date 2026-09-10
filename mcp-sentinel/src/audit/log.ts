@@ -110,6 +110,13 @@ export class AuditLog {
     return row?.chain_hash ?? null;
   }
 
+  latestId(): number {
+    const row = this.db
+      .prepare(`SELECT id FROM audit_events ORDER BY id DESC LIMIT 1`)
+      .get() as { id: number } | undefined;
+    return row?.id ?? 0;
+  }
+
   list(opts: {
     sessionId?: string;
     limit?: number;

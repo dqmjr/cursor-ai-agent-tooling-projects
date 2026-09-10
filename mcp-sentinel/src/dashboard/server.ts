@@ -1,5 +1,5 @@
 /**
- * Local HTTP API + static dashboard for browsing the audit log.
+ * Local HTTP API + SSE stream + static dashboard for browsing the audit log.
  */
 
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
@@ -78,6 +78,9 @@ async function handle(
   if (path === "/api/verify") {
     return json(res, 200, audit.verifyChain());
   }
+  if (path === "/api/stream") {
+    return streamAudit(req, res, audit);
+  }
 
   // Static files
   let filePath = join(staticDir, path === "/" ? "index.html" : path);
@@ -85,7 +88,6 @@ async function handle(
     return json(res, 403, { error: "forbidden" });
   }
   if (!existsSync(filePath) || statSync(filePath).isDirectory()) {
-    // SPA fallback
     filePath = join(staticDir, "index.html");
   }
   if (!existsSync(filePath)) {
@@ -96,6 +98,47 @@ async function handle(
   const ext = extname(filePath);
   res.writeHead(200, { "Content-Type": MIME[ext] ?? "application/octet-stream" });
   res.end(readFileSync(filePath));
+}
+
+/**
+ * Server-Sent Events: notify the dashboard when the audit log grows.
+ * Works across separate proxy/dashboard processes that share the same SQLite file.
+ */
+function streamAudit(req: IncomingMessage, res: ServerResponse, audit: AuditLog): void {
+  res.writeHead(200, {
+    "Content-Type": "text/event-stream; charset=utf-8",
+    "Cache-Control": "no-cache, no-transform",
+    Connection: "keep-alive",
+    "Access-Control-Allow-Origin": "*",
+  });
+  res.write("\n");
+
+  let lastId = audit.latestId();
+  const send = (payload: unknown) => {
+    res.write(`data: ${JSON.stringify(payload)}\n\n`);
+  };
+  send({ type: "hello", latestId: lastId, stats: audit.stats() });
+
+  const iv = setInterval(() => {
+    try {
+      const id = audit.latestId();
+      if (id !== lastId) {
+        lastId = id;
+        send({ type: "change", latestId: id, stats: audit.stats() });
+      } else {
+        send({ type: "ping", latestId: id });
+      }
+    } catch (err) {
+      send({
+        type: "error",
+        message: err instanceof Error ? err.message : String(err),
+      });
+    }
+  }, 800);
+
+  const cleanup = () => clearInterval(iv);
+  req.on("close", cleanup);
+  req.on("error", cleanup);
 }
 
 function json(res: ServerResponse, status: number, body: unknown): void {
