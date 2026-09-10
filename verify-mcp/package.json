@@ -1,32 +1,49 @@
 {
-  "name": "verify-mcp",
+  "name": "verify-artifact-mcp",
   "version": "0.1.0",
-  "description": "Pluggable verification-as-a-tool MCP server — agents call verify before declaring a task done.",
+  "description": "Verification-as-a-tool MCP server: agents call verify on markdown links, JSON Schema, and secrets before declaring a task done.",
   "type": "module",
   "bin": {
+    "verify-artifact-mcp": "./dist/cli.js",
     "verify-mcp": "./dist/cli.js"
   },
   "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "server.json",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/cli.ts",
     "start": "node dist/cli.js",
     "test": "node --import tsx --test tests/packs.test.ts",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "mcp",
+    "model-context-protocol",
+    "verify-mcp",
     "verification",
+    "verification-as-a-tool",
     "agent-harness",
+    "markdown-links",
+    "json-schema",
+    "secrets-scanner",
     "ai-agents",
-    "lint",
-    "secrets"
+    "cursor",
+    "claude",
+    "lint"
   ],
   "author": "dqmjr",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git"
+    "url": "git+https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git",
+    "directory": "verify-mcp"
   },
   "engines": {
     "node": ">=18"
@@ -45,5 +62,5 @@
   "bugs": {
     "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/issues"
   },
-  "homepage": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects"
+  "homepage": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/tree/main/verify-mcp#readme"
 }

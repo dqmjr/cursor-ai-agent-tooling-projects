@@ -1,0 +1,29 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.dqmjr/verify-artifact-mcp",
+  "title": "Verify Artifact MCP",
+  "description": "Verification-as-a-tool MCP server for markdown links, JSON Schema, and secrets.",
+  "version": "0.1.0",
+  "websiteUrl": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/tree/main/verify-mcp",
+  "repository": {
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects",
+    "source": "github",
+    "subfolder": "verify-mcp"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "verify-artifact-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": { "type": "stdio" },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "serve"
+        }
+      ]
+    }
+  ]
+}

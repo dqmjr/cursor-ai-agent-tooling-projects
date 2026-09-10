@@ -1,4 +1,4 @@
-# verify-mcp
+﻿# verify-mcp
 
 [![CI](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](../LICENSE)
@@ -18,27 +18,34 @@ Part of [cursor-ai-agent-tooling-projects](https://github.com/dqmjr/cursor-ai-ag
 ## Install
 
 ```bash
+# npm (searchable package name)
+npm i -g verify-artifact-mcp
+
+# or from this repo
 npm install
 npm run build
 npm test
 ```
 
+> **npm name:** `verify-artifact-mcp` (`verify-mcp` was already taken on npm).  
+> CLI aliases: `verify-artifact-mcp` and `verify-mcp`.
+
 ## Quick start
 
 ```bash
-node dist/cli.js packs
-node dist/cli.js run --path README.md -p markdown-links
-node dist/cli.js run --path ./src -p secrets
+verify-artifact-mcp packs
+verify-artifact-mcp run --path README.md -p markdown-links
+verify-artifact-mcp run --path ./src -p secrets
 ```
 
-### MCP host config
+### MCP host config (npx)
 
 ```json
 {
   "mcpServers": {
     "verify": {
-      "command": "node",
-      "args": ["/ABS/PATH/verify-mcp/dist/cli.js", "serve"]
+      "command": "npx",
+      "args": ["-y", "verify-artifact-mcp", "serve"]
     }
   }
 }

@@ -1,9 +1,10 @@
 {
-  "name": "mcp-sentinel",
+  "name": "mcp-audit-gateway",
   "version": "0.1.0",
-  "description": "MCP observability and policy gateway — transparent proxy with audit logging, hash-chained forensics, and a local dashboard.",
+  "description": "Local MCP audit + policy gateway (mcp-sentinel): transparent proxy, YAML allow/deny, secret redaction, hash-chained SQLite forensics, live dashboard for Cursor/Claude.",
   "type": "module",
   "bin": {
+    "mcp-audit-gateway": "./dist/cli.js",
     "mcp-sentinel": "./dist/cli.js"
   },
   "main": "./dist/index.js",
@@ -14,6 +15,8 @@
     "dist",
     "dashboard/dist",
     "examples",
+    "docs",
+    "server.json",
     "LICENSE",
     "NOTICE",
     "README.md"
@@ -28,24 +31,38 @@
     "smoke": "tsx scripts/smoke-seed.mts && tsx src/cli.ts verify -c examples/smoke-config.json && tsx src/cli.ts stats -c examples/smoke-config.json",
     "demo": "tsx scripts/demo.mts",
     "demo:dashboard": "tsx scripts/demo.mts && tsx src/cli.ts dashboard -c examples/smoke-config.json",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "mcp",
     "model-context-protocol",
+    "mcp-sentinel",
+    "mcp-audit",
+    "mcp-audit-log",
+    "mcp-policy",
+    "mcp-proxy",
+    "mcp-gateway",
+    "mcp-governance",
+    "tool-call-logging",
     "observability",
     "audit",
+    "forensics",
     "policy",
-    "gateway",
-    "ai-agents",
+    "allow-deny",
+    "hash-chain",
     "cursor",
-    "claude"
+    "claude",
+    "claude-code",
+    "ai-agents",
+    "local-first"
   ],
   "author": "dqmjr",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git"
+    "url": "git+https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git",
+    "directory": "mcp-sentinel"
   },
   "engines": {
     "node": ">=18"
@@ -73,5 +90,5 @@
   "bugs": {
     "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/issues"
   },
-  "homepage": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects"
+  "homepage": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/tree/main/mcp-sentinel#readme"
 }

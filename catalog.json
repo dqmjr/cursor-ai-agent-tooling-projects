@@ -1,0 +1,57 @@
+{
+  "name": "cursor-ai-agent-tooling-projects",
+  "version": "0.1.0",
+  "description": "Local-first MCP audit gateway, multi-agent control room, and verification-as-a-tool.",
+  "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects",
+  "llms": "https://raw.githubusercontent.com/dqmjr/cursor-ai-agent-tooling-projects/main/llms.txt",
+  "packages": [
+    {
+      "id": "mcp-audit-gateway",
+      "folder": "mcp-sentinel",
+      "npm": "mcp-audit-gateway",
+      "bin": ["mcp-audit-gateway", "mcp-sentinel"],
+      "keywords": [
+        "mcp audit",
+        "mcp policy",
+        "mcp proxy",
+        "mcp governance",
+        "tool call logging",
+        "cursor mcp security"
+      ],
+      "install": {
+        "npx": ["npx", "-y", "mcp-audit-gateway", "proxy", "--config", "<sentinel.json>"],
+        "git": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/tree/main/mcp-sentinel"
+      }
+    },
+    {
+      "id": "verify-artifact-mcp",
+      "folder": "verify-mcp",
+      "npm": "verify-artifact-mcp",
+      "bin": ["verify-artifact-mcp", "verify-mcp"],
+      "keywords": [
+        "verify mcp",
+        "verification-as-a-tool",
+        "markdown links",
+        "json schema",
+        "secrets scanner"
+      ],
+      "install": {
+        "npx": ["npx", "-y", "verify-artifact-mcp", "serve"],
+        "git": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/tree/main/verify-mcp"
+      }
+    },
+    {
+      "id": "agent-control-room",
+      "folder": "agent-control-room",
+      "npm": null,
+      "keywords": [
+        "multi-agent dashboard",
+        "agent approval",
+        "agent rollback"
+      ],
+      "install": {
+        "git": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/tree/main/agent-control-room"
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# mcp-sentinel
+﻿# mcp-sentinel
 
 [![CI](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](../LICENSE)
@@ -21,23 +21,35 @@ Part of [cursor-ai-agent-tooling-projects](https://github.com/dqmjr/cursor-ai-ag
 ## 60-second demo
 
 ```bash
+# From this repo
 npm install && npm run build
-npm run demo                 # seed a realistic audit timeline
-npm run demo:dashboard       # open the live UI
+npm run demo && npm run demo:dashboard
 # → http://127.0.0.1:3921
+
+# Or install from npm (AI/search-friendly package name)
+npm i -g mcp-audit-gateway
+mcp-audit-gateway --help
 ```
 
-You'll see allow / confirm / deny events, redacted secrets, and a verified hash chain.
+> **npm name:** `mcp-audit-gateway` (the name `mcp-sentinel` was already taken on npm).  
+> CLI aliases: `mcp-audit-gateway` and `mcp-sentinel`.
 
 ## Install into Cursor
 
-1. Copy [`examples/cursor.mcp.json`](./examples/cursor.mcp.json)
-2. Replace `REPLACE_WITH_ABS_PATH` with your absolute path to this folder
-3. Merge into Cursor MCP settings (or `.cursor/mcp.json`)
+**Option A — npx (recommended for users)**
 
-Same shape works for Claude Desktop — see [`examples/claude_desktop.mcp.json`](./examples/claude_desktop.mcp.json).
+```json
+{
+  "mcpServers": {
+    "sentinel": {
+      "command": "npx",
+      "args": ["-y", "mcp-audit-gateway", "proxy", "--config", "/ABS/PATH/sentinel.json"]
+    }
+  }
+}
+```
 
-Downstream servers stay in [`examples/sentinel.json`](./examples/sentinel.json). Tools appear as `serverName__toolName`.
+Copy [`examples/cursor.mcp.json`](./examples/cursor.mcp.json) and point `--config` at your `sentinel.json` (start from [`examples/sentinel.json`](./examples/sentinel.json)).
 
 ## CLI
 

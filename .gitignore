@@ -1,6 +1,7 @@
 ﻿# Dependencies & build
 **/node_modules/
 **/dist/
+dist-packages/
 **/.vite/
 *.tgz
 coverage/

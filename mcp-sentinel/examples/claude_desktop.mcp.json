@@ -1,13 +1,13 @@
-{
+﻿{
   "mcpServers": {
     "sentinel": {
       "command": "npx",
       "args": [
-        "tsx",
-        "REPLACE_WITH_ABS_PATH/mcp-sentinel/src/cli.ts",
+        "-y",
+        "mcp-audit-gateway",
         "proxy",
         "--config",
-        "REPLACE_WITH_ABS_PATH/mcp-sentinel/examples/sentinel.json"
+        "REPLACE_WITH_ABS_PATH/sentinel.json"
       ]
     }
   }

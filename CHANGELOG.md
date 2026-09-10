@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Discoverability layer: `llms.txt`, `AGENTS.md`, `catalog.json`, MCP `server.json` manifests
+- npm package names `mcp-audit-gateway` and `verify-artifact-mcp` (ready to publish)
+- Cursor skill draft + discovery / publish docs
 - mcp-sentinel live SSE dashboard stream (`/api/stream`)
 - mcp-sentinel `npm run demo` / `demo:dashboard` with realistic audit seed
 - Copy-paste Cursor / Claude Desktop MCP config examples

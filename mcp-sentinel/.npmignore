@@ -1,0 +1,13 @@
+scripts/
+tests/
+src/
+dashboard/src/
+dashboard/index.html
+dashboard/vite.config.ts
+tsconfig.json
+*.db
+*.db-*
+.sentinel/
+examples/.sentinel/
+*.log
+.DS_Store

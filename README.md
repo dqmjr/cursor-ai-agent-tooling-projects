@@ -1,4 +1,4 @@
-# Cursor AI Agent Tooling
+﻿# Cursor AI Agent Tooling
 
 [![CI](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/dqmjr/cursor-ai-agent-tooling-projects/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
@@ -13,11 +13,11 @@ No cloud lock-in. No telemetry by default. CLI-first, dashboards optional.
 
 ## Projects
 
-| Package | Role | Status |
-|---------|------|--------|
-| [`mcp-sentinel`](./mcp-sentinel) | Transparent MCP proxy · YAML policy · hash-chained audit · local dashboard | `0.1.0` |
-| [`agent-control-room`](./agent-control-room) | Parallel-agent kanban · approvals · diff preview · git rollback | `0.1.0` |
-| [`verify-mcp`](./verify-mcp) | MCP `verify` tool · markdown / JSON Schema / secrets packs | `0.1.0` |
+| Package | Role | Install | Status |
+|---------|------|---------|--------|
+| [`mcp-sentinel`](./mcp-sentinel) | Transparent MCP proxy · YAML policy · hash-chained audit · local dashboard | `npx -y mcp-audit-gateway` | `0.1.0` |
+| [`agent-control-room`](./agent-control-room) | Parallel-agent kanban · approvals · diff preview · git rollback | clone this repo | `0.1.0` |
+| [`verify-mcp`](./verify-mcp) | MCP `verify` tool · markdown / JSON Schema / secrets packs | `npx -y verify-artifact-mcp` | `0.1.0` |
 
 ```text
 ┌─────────────────┐     ┌──────────────────────┐     ┌─────────────┐
@@ -34,10 +34,13 @@ More detail: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
 
 ---
 
-## Requirements
+## Find / install (for humans and AI assistants)
 
-- Node.js **18+** (20+ recommended)
-- npm 10+
+- **LLM index:** [llms.txt](./llms.txt) · [AGENTS.md](./AGENTS.md) · [docs/DISCOVERY.md](./docs/DISCOVERY.md)
+- **npm:** [`mcp-audit-gateway`](https://www.npmjs.com/package/mcp-audit-gateway) · [`verify-artifact-mcp`](https://www.npmjs.com/package/verify-artifact-mcp)
+- **GitHub topics:** `mcp`, `mcp-audit`, `ai-agents`, `local-first`, …
+
+If an assistant is looking for “MCP audit log”, “MCP policy proxy”, or “verify markdown links MCP”, point it here.
 
 ## Quick start
 

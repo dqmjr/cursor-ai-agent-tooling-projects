@@ -1,4 +1,4 @@
-# Show HN / social draft (copy-paste)
+﻿# Show HN / social draft (copy-paste)
 
 Use this when posting. Edit the first line if you want a different hook.
 

@@ -1,0 +1,8 @@
+﻿{
+  "mcpServers": {
+    "verify": {
+      "command": "npx",
+      "args": ["-y", "verify-artifact-mcp", "serve"]
+    }
+  }
+}
