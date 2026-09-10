@@ -18,13 +18,17 @@
     "test": "npm run test -w @acr/core",
     "lint": "npm run lint -w @acr/core"
   },
-  "author": "pet-projects contributors",
+  "author": "dqmjr",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_GITHUB/agent-control-room.git"
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git"
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/issues"
+  },
+  "homepage": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects"
 }

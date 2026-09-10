@@ -6,6 +6,6 @@
     }
   },
   "policyFile": "./policy.yaml",
-  "auditDb": "../.sentinel/audit.db",
-  "dashboardPort": 3920
+  "auditDb": "../.sentinel/smoke.db",
+  "dashboardPort": 3921
 }

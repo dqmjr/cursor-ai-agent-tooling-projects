@@ -22,11 +22,11 @@
     "lint",
     "secrets"
   ],
-  "author": "pet-projects contributors",
+  "author": "dqmjr",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_GITHUB/verify-mcp.git"
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git"
   },
   "engines": {
     "node": ">=18"
@@ -41,5 +41,9 @@
     "@types/node": "^22.13.10",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/issues"
+  },
+  "homepage": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects"
 }

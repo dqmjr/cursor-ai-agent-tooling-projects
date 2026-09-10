@@ -32,5 +32,14 @@
     "@types/ws": "^8.18.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
-  }
+  },
+  "author": "dqmjr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/issues"
+  },
+  "homepage": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects"
 }

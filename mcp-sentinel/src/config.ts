@@ -26,8 +26,18 @@ export function loadConfig(configPath: string): SentinelConfig & { configDir: st
     ? resolvePath(configDir, raw.policyFile)
     : undefined;
 
+  const mcpServers: SentinelConfig["mcpServers"] = {};
+  for (const [name, server] of Object.entries(raw.mcpServers)) {
+    mcpServers[name] = {
+      ...server,
+      // Default child cwd to the config directory so relative args resolve predictably.
+      cwd: server.cwd ? resolvePath(configDir, server.cwd) : configDir,
+    };
+  }
+
   return {
     ...raw,
+    mcpServers,
     auditDb,
     policyFile,
     dashboardPort: raw.dashboardPort ?? DEFAULT_DASHBOARD_PORT,

@@ -24,7 +24,8 @@
     "dev": "tsx src/cli.ts",
     "dev:dashboard": "vite --config dashboard/vite.config.ts",
     "start": "node dist/cli.js",
-    "test": "node --import tsx --test tests/policy-audit.test.ts",
+    "test": "node --import tsx --test tests/policy-audit.test.ts tests/config.test.ts",
+    "smoke": "tsx scripts/smoke-seed.mts && tsx src/cli.ts verify -c examples/smoke-config.json && tsx src/cli.ts stats -c examples/smoke-config.json",
     "lint": "tsc --noEmit"
   },
   "keywords": [
@@ -38,11 +39,11 @@
     "cursor",
     "claude"
   ],
-  "author": "pet-projects contributors",
+  "author": "dqmjr",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_GITHUB/mcp-sentinel.git"
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects.git"
   },
   "engines": {
     "node": ">=18"
@@ -66,5 +67,9 @@
     "tsx": "^4.19.3",
     "typescript": "^5.8.2",
     "vite": "^6.2.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects/issues"
+  },
+  "homepage": "https://github.com/dqmjr/cursor-ai-agent-tooling-projects"
 }

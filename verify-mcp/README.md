@@ -1,70 +1,55 @@
 # verify-mcp
 
-**Verification-as-a-tool** for AI coding agents. Exposes a single MCP `verify` tool backed by pluggable packs so an agent can check an artifact *before* declaring a task done — especially useful when there is no compiler or `pytest` for the domain.
+**Verification-as-a-tool** for AI agents. Exposes MCP `verify` so a model can check an artifact before saying “done” — especially when there is no compiler or test suite.
 
-> Before: agent writes docs / configs / JSON and says “done” with no signal.  
-> After: agent calls `verify` with packs like `markdown-links`, `json-schema`, `secrets`.
+## Packs
 
-## Built-in packs
+| Pack | Checks |
+|------|--------|
+| `markdown-links` | Relative markdown links exist on disk |
+| `json-schema` | JSON matches `options.schema` / `options.schemaPath` |
+| `secrets` | Heuristic scan for keys, tokens, private keys |
 
-| Pack | What it checks |
-|------|----------------|
-| `markdown-links` | Relative markdown links resolve on disk |
-| `json-schema` | JSON matches a provided schema (`options.schema` or `options.schemaPath`) |
-| `secrets` | Heuristic scan for AWS keys, GitHub tokens, private keys, etc. |
-
-## 60-second quickstart
+## Install
 
 ```bash
 npm install
 npm run build
+npm test
+```
 
-# CLI (no MCP host needed)
+## Quick start
+
+```bash
 node dist/cli.js packs
 node dist/cli.js run --path README.md -p markdown-links
 node dist/cli.js run --path ./src -p secrets
 ```
 
-### Cursor / Claude `mcp.json`
+### MCP host config
 
 ```json
 {
   "mcpServers": {
     "verify": {
       "command": "node",
-      "args": ["/absolute/path/to/verify-mcp/dist/cli.js", "serve"]
+      "args": ["/ABS/PATH/verify-mcp/dist/cli.js", "serve"]
     }
   }
 }
 ```
 
-Then ask the agent:
+Ask the agent: *Call `verify` on `docs/guide.md` with pack `markdown-links` before finishing.*
 
-> Before finishing, call the `verify` tool on `docs/guide.md` with pack `markdown-links`.
+## Tools
 
-## MCP tools
-
-- `list_packs` — enumerate registered packs
+- `list_packs`
 - `verify` — `{ path, packs?, content?, options?, cwd? }` → `{ pass, results, summary }`
-
-## Extending
-
-```ts
-import { registerPack } from "verify-mcp";
-
-registerPack({
-  name: "my-domain",
-  description: "Custom checks",
-  async verify(ctx) {
-    return { pack: "my-domain", pass: true, findings: [], summary: "ok" };
-  },
-});
-```
 
 ## Origin
 
-Created September 2026 to close the “verification harness outside of code” gap discussed in agent-harness writing. Authorship via git history + Apache-2.0 LICENSE / NOTICE.
+Created September 2026. Authorship via git history, Apache-2.0 `LICENSE`, and `NOTICE`.
 
 ## License
 
-Apache License 2.0 — see [LICENSE](./LICENSE) and [NOTICE](./NOTICE).
+Apache-2.0

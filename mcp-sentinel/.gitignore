@@ -6,6 +6,7 @@ dashboard/dist/
 .data/
 .sentinel/
 *.log
+dash-*.log
 .DS_Store
 .env
 .env.*
