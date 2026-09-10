@@ -1,0 +1,21 @@
+{
+  "name": "@acr/adapter-generic",
+  "version": "0.1.0",
+  "description": "Generic JSONL / webhook ingestion helper for Agent Control Room",
+  "type": "module",
+  "bin": {
+    "acr-ingest": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "sessionId": "demo-session",
+  "source": "generic",
+  "type": "task_started",
+  "title": "Demo: refactor auth module",
+  "message": "Started by example script",
+  "cwd": ".",
+  "baseCommit": "HEAD"
+}

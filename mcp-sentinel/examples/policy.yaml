@@ -1,0 +1,27 @@
+# mcp-sentinel policy example
+# First matching rule wins. match is "server/tool" with * and ? globs.
+
+defaultAction: allow
+
+redactPatterns:
+  - password
+  - secret
+  - token
+  - apiKey
+  - api_key
+  - authorization
+
+rules:
+  - match: "shell/rm_*"
+    action: deny
+    reason: "Destructive shell tools are blocked by default"
+
+  - match: "shell/*"
+    action: confirm
+    reason: "Shell tools require human review in the dashboard"
+
+  - match: "filesystem/write_*"
+    action: confirm
+    reason: "Filesystem writes are flagged for review"
+    redactArgs:
+      - content

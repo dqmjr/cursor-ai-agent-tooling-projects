@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dashboard/dist/
+*.db
+*.db-journal
+.data/
+.sentinel/
+*.log
+.DS_Store
+.env
+.env.*
+coverage/
+.vite/
+*.tgz

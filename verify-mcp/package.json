@@ -1,0 +1,45 @@
+{
+  "name": "verify-mcp",
+  "version": "0.1.0",
+  "description": "Pluggable verification-as-a-tool MCP server — agents call verify before declaring a task done.",
+  "type": "module",
+  "bin": {
+    "verify-mcp": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/cli.ts",
+    "start": "node dist/cli.js",
+    "test": "node --import tsx --test tests/packs.test.ts",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "verification",
+    "agent-harness",
+    "ai-agents",
+    "lint",
+    "secrets"
+  ],
+  "author": "pet-projects contributors",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_GITHUB/verify-mcp.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "ajv": "^8.17.1",
+    "commander": "^13.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

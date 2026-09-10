@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "echo": {
+      "command": "node",
+      "args": ["./examples/echo-server.mjs"]
+    }
+  },
+  "policyFile": "./examples/policy.yaml",
+  "auditDb": "./.sentinel/audit.db",
+  "dashboardPort": 3920
+}

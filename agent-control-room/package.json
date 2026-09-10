@@ -1,0 +1,30 @@
+{
+  "name": "agent-control-room",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unified multi-agent session dashboard — timeline, approvals, and git rollback for parallel coding agents.",
+  "workspaces": [
+    "packages/core",
+    "packages/web",
+    "packages/adapters/claude-code",
+    "packages/adapters/cursor",
+    "packages/adapters/generic"
+  ],
+  "scripts": {
+    "build": "npm run build -w @acr/core && npm run build -w @acr/web && npm run build -w @acr/adapter-claude-code && npm run build -w @acr/adapter-cursor && npm run build -w @acr/adapter-generic",
+    "dev:daemon": "npm run dev -w @acr/core",
+    "dev:web": "npm run dev -w @acr/web",
+    "start": "npm run start -w @acr/core",
+    "test": "npm run test -w @acr/core",
+    "lint": "npm run lint -w @acr/core"
+  },
+  "author": "pet-projects contributors",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_GITHUB/agent-control-room.git"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

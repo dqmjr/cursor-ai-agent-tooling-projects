@@ -1,0 +1,9 @@
+﻿# Nested project repos are self-contained; ignore their install artifacts if tracked from the parent.
+**/node_modules/
+**/.sentinel/
+**/.acr/
+**/*.db
+**/*.db-journal
+**/dist/
+**/.vite/
+.DS_Store
