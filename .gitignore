@@ -19,6 +19,9 @@ dash-*.log
 .env
 .env.*
 
+# Google Drive sync temp
+.tmp.driveupload/
+
 # Editors
 .idea/
 .vscode/*
